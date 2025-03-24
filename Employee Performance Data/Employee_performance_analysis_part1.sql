@@ -148,7 +148,7 @@ GROUP BY Job_Title ),
 CTE2 AS (SELECT Job_Title,AVG(Monthly_Salary) AS female_avg_gender_sal
 FROM results
 WHERE Gender = 'Female'
-GROUP BY Job_Title )
+GROUP BY Job_Title );
 SELECT TOP 1 c1.*,c2.*, ABS(c1.male_avg_gender_sal - c2.female_avg_gender_sal) AS gender_gap
 FROM CTE AS c1
 LEFT JOIN CTE2 AS c2
@@ -176,7 +176,7 @@ WHERE Monthly_Salary > avg_dept_sal
 GROUP BY Department),
 CTE2 AS (SELECT Department, COUNT(*) AS outer_sum
 FROM results
-GROUP BY Department)
+GROUP BY Department);
 
 SELECT (CAST(c1.inner_sum AS DECIMAL) / c2.outer_sum) * 100 AS req_percent, c1.*,c2.*
 FROM CTE1 AS c1
@@ -262,7 +262,7 @@ CTE2 AS (
 SELECT Department, COUNT(*) AS big_sum
 FROM results
 GROUP BY Department
-)
+);
 
 SELECT c1.*,c2.*
 FROM CTE1 AS c1
@@ -345,7 +345,7 @@ WHERE Education_Level = 'Bachelor'
 GROUP BY Department),
 CTE2 AS (SELECT Department, COUNT(*) AS outer_sum
 FROM results
-GROUP BY Department)
+GROUP BY Department);
 
 SELECT c1.Department,(CAST(c1.inner_sum AS decimal)/c2.outer_sum)*100 AS req_percent
 FROM CTE1 AS c1
